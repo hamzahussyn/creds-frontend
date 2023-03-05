@@ -15,8 +15,8 @@ import {
   Stack,
   Spinner,
 } from "@chakra-ui/react";
-import axios from "axios";
 import Mascot from "../../assets/logo/light-mascot.png";
+import { Prediction } from "../../services/api/prediction";
 
 function NoResultCard() {
   return (
@@ -111,8 +111,7 @@ export const Equivalence = () => {
     form.append("file", file);
     setLoading(true);
 
-    axios
-      .post("http://45.41.204.140:3000/equivalence", form)
+    Prediction.generate(form)
       .then((res) => {
         setResults(res.data);
       })
